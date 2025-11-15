@@ -1,3 +1,4 @@
+/* Global */
 * {
     padding: 0;
     margin: 0;
@@ -23,24 +24,15 @@ body {
     z-index: 50;
 }
 
-.navbar .logo {
-    font-size: 1.4rem;
-    font-weight: bold;
-}
-
 .navbar .menu {
     display: flex;
     list-style: none;
     gap: 20px;
 }
 
-.navbar .menu a {
+.navbar a {
     color: #fff;
     text-decoration: none;
-    transition: 0.2s;
-}
-.navbar .menu a:hover {
-    color: #ffcc00;
 }
 
 /* Hero */
@@ -50,16 +42,7 @@ body {
     padding-bottom: 50px;
 }
 
-.hero h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    color: #666;
-    font-size: 18px;
-}
-
+/* Buttons */
 .cta-btn {
     margin-top: 15px;
     padding: 12px 28px;
@@ -68,7 +51,6 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .cta-btn:hover {
@@ -82,7 +64,7 @@ body {
     width: 90%;
 }
 
-/* Grid Cards */
+/* Grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -95,27 +77,36 @@ body {
     padding: 15px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: 0.2s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+/* Add Prompt Form */
+.form-section {
+    width: 90%;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.card img {
+.form-section h2 {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+}
+
+form input,
+form textarea {
     width: 100%;
-    border-radius: 10px;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
-.card h3 {
-    margin-top: 10px;
-}
-
-.card span {
-    display: inline-block;
-    background: #eee;
-    padding: 4px 8px;
-    font-size: 13px;
-    border-radius: 5px;
-    margin-top: 5px;
+form textarea {
+    height: 100px;
 }
