@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Prompt Gallery</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Prompt Gallery — Glassmorphism</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">AI Prompts</div>
-        <ul class="menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#addPrompt">Add Prompt</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search prompts..." onkeyup="searchPrompt()">
-</div>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Discover Stunning AI Prompts</h1>
-        <p>Create, explore, and inspire with high-quality prompts & images.</p>
-        <button class="cta-btn">Browse Now</button>
-    </header>
-
-    
-    <!-- Filter -->
-    <div class="filter-box">
-        <label>Filter by Tag:</label>
-        <select id="tagFilter">
-            <option value="all">All</option>
-        </select>
+  <!-- NAV -->
+  <nav class="navbar glass">
+    <div class="nav-left">
+      <div class="logo">AI Prompts</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Gallery</a>
+        <a href="#addPrompt">Add</a>
+      </div>
     </div>
-     <!--EDIT PROMPT FEATUR-->
-    <div id="editPopup" class="popup">
-    <div class="popup-box">
-        <h3>Edit Prompt</h3>
-        <input type="text" id="editTitle" placeholder="Title">
-        <textarea id="editText"></textarea>
-        <input type="text" id="editTags" placeholder="Tags (comma separated)">
-        <button onclick="saveEdit()">Save</button>
-        <button onclick="closePopup()">Cancel</button>
+
+    <div class="nav-right">
+      <button id="themeToggle" class="icon-btn" title="Toggle theme">🌙</button>
     </div>
-</div>
+  </nav>
 
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <input id="searchInput" placeholder="Search prompts, tags or titles..." />
+  </div>
 
-    <!-- Prompt Cards -->
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner glass">
+      <h1>Discover Stunning AI Prompts</h1>
+      <p>Create, explore & remix prompts with reference images — powered by a sleek glass UI.</p>
+      <div class="hero-actions">
+        <button class="cta-btn" id="scrollToGallery">Browse Now</button>
+        <button class="cta-muted" id="openAdd">＋ Add Prompt</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FILTER -->
+  <div class="controls">
+    <label class="filter-label">Filter by Tag:</label>
+    <select id="tagFilter" class="glass-select"><option value="all">All</option></select>
+  </div>
+
+  <!-- PROMPT GRID -->
+  <main>
     <section id="promptList" class="grid"></section>
+  </main>
 
-    <!-- Add Prompt Form -->
-    <section id="addPrompt" class="form-section">
-        <h2>Add New Prompt</h2>
+  <!-- ADD POPUP -->
+  <div id="addPopup" class="popup">
+    <div class="popup-box glass">
+      <h3>Add New Prompt</h3>
+      <input id="newTitle" placeholder="Title" />
+      <textarea id="newPrompt" placeholder="Prompt text"></textarea>
+      <input id="newImage" placeholder="Image URL (e.g. images/ref4.jpg)" />
+      <input id="newTags" placeholder="Tags (comma separated)" />
+      <div class="popup-actions">
+        <button id="saveNew" class="cta-btn">Add</button>
+        <button id="cancelNew" class="cta-muted">Cancel</button>
+      </div>
+    </div>
+  </div>
 
-        <form id="promptForm">
-            <label>Title:</label>
-            <input type="text" id="title" required>
+  <!-- EDIT POPUP -->
+  <div id="editPopup" class="popup">
+    <div class="popup-box glass">
+      <h3>Edit Prompt</h3>
+      <input id="editTitle" placeholder="Title" />
+      <textarea id="editText" placeholder="Prompt"></textarea>
+      <input id="editImage" placeholder="Image URL" />
+      <input id="editTags" placeholder="Tags (comma separated)" />
+      <div class="popup-actions">
+        <button id="saveEditBtn" class="cta-btn">Save</button>
+        <button id="cancelEdit" class="cta-muted">Cancel</button>
+      </div>
+    </div>
+  </div>
 
-            <label>Prompt Text:</label>
-            <textarea id="promptText" required></textarea>
+  <!-- FLOATING ADD BUTTON -->
+  <button id="fabAdd" class="add-btn" title="Add prompt">＋</button>
 
-            <label>Image URL:</label>
-            <input type="text" id="imageUrl" required placeholder="images/ref4.jpg">
-
-            <label>Tags (comma separated):</label>
-            <input type="text" id="tags" required placeholder="fantasy, warrior">
-
-            <button type="submit" class="cta-btn">Save Prompt</button>
-        </form>
-    </section>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
