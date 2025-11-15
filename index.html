@@ -14,7 +14,7 @@
         <ul class="menu">
             <li><a href="#">Home</a></li>
             <li><a href="#">Gallery</a></li>
-            <li><a href="#">Upload</a></li>
+            <li><a href="#addPrompt">Add Prompt</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
     </nav>
@@ -26,7 +26,7 @@
         <button class="cta-btn">Browse Now</button>
     </header>
 
-    <!-- Tag Filter -->
+    <!-- Filter -->
     <div class="filter-box">
         <label>Filter by Tag:</label>
         <select id="tagFilter">
@@ -36,6 +36,27 @@
 
     <!-- Prompt Cards -->
     <section id="promptList" class="grid"></section>
+
+    <!-- Add Prompt Form -->
+    <section id="addPrompt" class="form-section">
+        <h2>Add New Prompt</h2>
+
+        <form id="promptForm">
+            <label>Title:</label>
+            <input type="text" id="title" required>
+
+            <label>Prompt Text:</label>
+            <textarea id="promptText" required></textarea>
+
+            <label>Image URL:</label>
+            <input type="text" id="imageUrl" required placeholder="images/ref4.jpg">
+
+            <label>Tags (comma separated):</label>
+            <input type="text" id="tags" required placeholder="fantasy, warrior">
+
+            <button type="submit" class="cta-btn">Save Prompt</button>
+        </form>
+    </section>
 
     <script src="script.js"></script>
 </body>
