@@ -34,6 +34,29 @@ function displayPrompts(list) {
     });
 }
 
+function copyPrompt(text) {
+    navigator.clipboard.writeText(text).then(() => {
+
+        // Find all copy buttons
+        const btns = document.querySelectorAll(".copy-btn");
+
+        // Find the button that matches this text
+        btns.forEach(btn => {
+            if (btn.getAttribute("onclick").includes(text)) {
+                btn.textContent = "✔ Copied!";
+                btn.style.background = "#28a745";
+
+                setTimeout(() => {
+                    btn.textContent = "📋 Copy";
+                    btn.style.background = "#111";
+                }, 1200);
+            }
+        });
+
+    });
+}
+
+
 // Load Tags
 function loadTags() {
     const dropdown = document.getElementById("tagFilter");
