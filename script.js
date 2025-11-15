@@ -1,17 +1,25 @@
-// Load JSON File
-fetch("prompts.json")
-    .then(res => res.json())
-    .then(data => {
-        loadTags(data);
-        displayPrompts(data);
-    });
+let prompts = [];
 
-// Display Prompt Cards
-function displayPrompts(prompts) {
+// Load JSON + localStorage
+async function loadData() {
+    const res = await fetch("prompts.json");
+    const jsonData = await res.json();
+
+    const localData = JSON.parse(localStorage.getItem("prompts")) || [];
+
+    prompts = [...jsonData, ...localData];
+
+    loadTags();
+    displayPrompts(prompts);
+}
+loadData();
+
+// Display Cards
+function displayPrompts(list) {
     const container = document.getElementById("promptList");
     container.innerHTML = "";
 
-    prompts.forEach(p => {
+    list.forEach(p => {
         const card = document.createElement("div");
         card.className = "card";
 
@@ -26,13 +34,12 @@ function displayPrompts(prompts) {
     });
 }
 
-// Load Dropdown Tags
-function loadTags(prompts) {
+// Load Tags
+function loadTags() {
+    const dropdown = document.getElementById("tagFilter");
     const allTags = new Set();
 
     prompts.forEach(p => p.tags.forEach(tag => allTags.add(tag)));
-
-    const dropdown = document.getElementById("tagFilter");
 
     allTags.forEach(tag => {
         const opt = document.createElement("option");
@@ -41,11 +48,11 @@ function loadTags(prompts) {
         dropdown.appendChild(opt);
     });
 
-    dropdown.addEventListener("change", () => filterByTag(prompts));
+    dropdown.addEventListener("change", filterByTag);
 }
 
 // Filter Logic
-function filterByTag(prompts) {
+function filterByTag() {
     const selected = document.getElementById("tagFilter").value;
 
     if (selected === "all") {
@@ -55,3 +62,26 @@ function filterByTag(prompts) {
         displayPrompts(filtered);
     }
 }
+
+// Add Prompt Form
+document.getElementById("promptForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const newPrompt = {
+        title: document.getElementById("title").value,
+        prompt: document.getElementById("promptText").value,
+        image: document.getElementById("imageUrl").value,
+        tags: document.getElementById("tags").value.split(",").map(t => t.trim())
+    };
+
+    // Save to localStorage
+    const saved = JSON.parse(localStorage.getItem("prompts")) || [];
+    saved.push(newPrompt);
+    localStorage.setItem("prompts", JSON.stringify(saved));
+
+    // Update page
+    prompts.push(newPrompt);
+    displayPrompts(prompts);
+
+    alert("Prompt added successfully!");
+});
