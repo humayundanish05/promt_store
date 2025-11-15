@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Cyberpunk City Girl",
+        "prompt": "A futuristic cyberpunk girl glowing in neon lights.",
+        "image": "images/ref1.jpg",
+        "tags": ["cyberpunk", "girl", "future"]
+    },
+    {
+        "title": "Fantasy Warrior",
+        "prompt": "A medieval warrior standing dramatically on a cliff.",
+        "image": "images/ref2.jpg",
+        "tags": ["fantasy", "warrior", "medieval"]
+    },
+    {
+        "title": "Robot Samurai",
+        "prompt": "A robot samurai with glowing energy blades.",
+        "image": "images/ref3.jpg",
+        "tags": ["robot", "samurai", "tech"]
+    }
+]
