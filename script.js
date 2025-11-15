@@ -15,11 +15,11 @@ async function loadData() {
 loadData();
 
 // Display Cards
-function displayPrompts(list) {
+function displayPrompts(list = prompts) {
     const container = document.getElementById("promptList");
     container.innerHTML = "";
 
-    list.forEach(p => {
+    list.forEach((p, index) => {
         const card = document.createElement("div");
         card.className = "card";
 
@@ -28,17 +28,37 @@ function displayPrompts(list) {
             <h3>${p.title}</h3>
             <p class="promptText">${p.prompt}</p>
 
-<button class="copy-btn" onclick="copyPrompt('${p.prompt.replace(/'/g, "\\'")}')">
-    📋 Copy
-</button>
+            <button class="copy-btn" onclick="copyPrompt('${p.prompt.replace(/'/g, "\\'")}')">📋 Copy</button>
 
-<span>${p.tags.join(", ")}</span>
+            <span>${p.tags.join(", ")}</span>
 
+            <div class="card-actions">
+                <button class="delete-btn" onclick="deletePrompt(${index})">🗑 Delete</button>
+                <button class="edit-btn" onclick="editPrompt(${index})">✏ Edit</button>
+            </div>
         `;
 
         container.appendChild(card);
     });
 }
+
+//
+function savePrompts() {
+    localStorage.setItem("prompts", JSON.stringify(prompts));
+}
+
+function loadPrompts() {
+    const data = localStorage.getItem("prompts");
+    if (data) {
+        prompts.length = 0;
+        prompts.push(...JSON.parse(data));
+    }
+}
+
+loadPrompts();
+
+
+//
 
 function copyPrompt(text) {
     navigator.clipboard.writeText(text).then(() => {
@@ -91,6 +111,52 @@ function filterByTag() {
         displayPrompts(filtered);
     }
 }
+// delet promt
+function deletePrompt(index) {
+    prompts.splice(index, 1);
+    savePrompts();
+    displayPrompts();
+}
+
+//
+let editIndex = null;
+
+function editPrompt(index) {
+    editIndex = index;
+
+    document.getElementById("editTitle").value = prompts[index].title;
+    document.getElementById("editText").value = prompts[index].prompt;
+    document.getElementById("editTags").value = prompts[index].tags.join(", ");
+
+    document.getElementById("editPopup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("editPopup").style.display = "none";
+}
+
+function saveEdit() {
+    prompts[editIndex].title = document.getElementById("editTitle").value;
+    prompts[editIndex].prompt = document.getElementById("editText").value;
+    prompts[editIndex].tags = document.getElementById("editTags").value.split(",").map(t => t.trim());
+
+    savePrompts();
+    displayPrompts();
+    closePopup();
+}
+
+//  
+function searchPrompt() {
+    const text = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = prompts.filter(p =>
+        p.title.toLowerCase().includes(text) ||
+        p.prompt.toLowerCase().includes(text) ||
+        p.tags.join(" ").toLowerCase().includes(text)
+    );
+
+    displayPrompts(filtered);
+}
+
 
 // Add Prompt Form
 document.getElementById("promptForm").addEventListener("submit", function (e) {
