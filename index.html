@@ -19,6 +19,10 @@
         </ul>
     </nav>
 
+    <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search prompts..." onkeyup="searchPrompt()">
+</div>
+
     <!-- Hero Section -->
     <header class="hero">
         <h1>Discover Stunning AI Prompts</h1>
@@ -34,6 +38,18 @@
             <option value="all">All</option>
         </select>
     </div>
+     <!--EDIT PROMPT FEATUR-->
+    <div id="editPopup" class="popup">
+    <div class="popup-box">
+        <h3>Edit Prompt</h3>
+        <input type="text" id="editTitle" placeholder="Title">
+        <textarea id="editText"></textarea>
+        <input type="text" id="editTags" placeholder="Tags (comma separated)">
+        <button onclick="saveEdit()">Save</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+</div>
+
 
     <!-- Prompt Cards -->
     <section id="promptList" class="grid"></section>
