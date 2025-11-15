@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
     <!-- Navigation -->
     <nav class="navbar glass-nav">
         <div class="logo">AI Prompts</div>
@@ -18,7 +19,7 @@
         </ul>
     </nav>
 
-    <!-- Search -->
+    <!-- Search Bar -->
     <div class="search-container glass-box">
         <input type="text" id="searchInput" placeholder="Search prompts..." onkeyup="searchPrompt()">
     </div>
@@ -27,15 +28,13 @@
     <header class="hero glass-box">
         <h1>Discover Stunning AI Prompts</h1>
         <p>Create, explore, and inspire with high-quality prompts & images.</p>
-        <button class="cta-btn">Browse Now</button>
+        <button class="cta-btn neon-btn">Browse Now</button>
     </header>
 
     <!-- Filter -->
     <div class="filter-box glass-box">
         <label>Filter by Tag:</label>
-        <select id="tagFilter">
-            <option value="all">All</option>
-        </select>
+        <select id="tagFilter"></select>
     </div>
 
     <!-- Edit Prompt Popup -->
@@ -44,13 +43,14 @@
             <h3>Edit Prompt</h3>
             <input type="text" id="editTitle" placeholder="Title">
             <textarea id="editText"></textarea>
-            <input type="text" id="editTags" placeholder="Tags (comma separated)">
-            <button onclick="saveEdit()">Save</button>
-            <button onclick="closePopup()">Cancel</button>
+            <input type="text" id="editTags" placeholder="Comma separated tags">
+
+            <button onclick="saveEdit()" class="cta-btn small-btn">Save</button>
+            <button onclick="closePopup()" class="cta-btn small-btn cancel">Cancel</button>
         </div>
     </div>
 
-    <!-- Prompt Cards -->
+    <!-- Prompt Cards Grid -->
     <section id="promptList" class="grid"></section>
 
     <!-- Add Prompt Form -->
@@ -68,9 +68,9 @@
             <input type="text" id="imageUrl" required placeholder="images/ref4.jpg">
 
             <label>Tags (comma separated):</label>
-            <input type="text" id="tags" required placeholder="fantasy, warrior">
+            <input type="text" id="tags" required>
 
-            <button type="submit" class="cta-btn">Save Prompt</button>
+            <button type="submit" class="cta-btn neon-btn">Save Prompt</button>
         </form>
     </section>
 
