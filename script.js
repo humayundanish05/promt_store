@@ -26,8 +26,14 @@ function displayPrompts(list) {
         card.innerHTML = `
             <img src="${p.image}" alt="${p.title}">
             <h3>${p.title}</h3>
-            <p>${p.prompt}</p>
-            <span>${p.tags.join(", ")}</span>
+            <p class="promptText">${p.prompt}</p>
+
+<button class="copy-btn" onclick="copyPrompt('${p.prompt.replace(/'/g, "\\'")}')">
+    📋 Copy
+</button>
+
+<span>${p.tags.join(", ")}</span>
+
         `;
 
         container.appendChild(card);
