@@ -276,4 +276,4 @@ function debounce(fn, wait){
   let t;
   return function(...a){ clearTimeout(t); t = setTimeout(()=>fn.apply(this,a), wait); };
 }
-function generateId(){ return Math.random().toString(36).slice(2,9); }
+function generateId(){ return Math.random().toString(36).slice(2,9); }]}
