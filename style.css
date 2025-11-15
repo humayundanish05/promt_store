@@ -111,3 +111,21 @@ form textarea {
 form textarea {
     height: 100px;
 }
+
+
+.copy-btn {
+    margin-top: 10px;
+    padding: 6px 14px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.copy-btn:hover {
+    background: #ffcc00;
+    color: #111;
+}
+
